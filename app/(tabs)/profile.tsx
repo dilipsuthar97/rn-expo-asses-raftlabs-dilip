@@ -4,6 +4,7 @@ import { ThemedView } from '@/components/ThemedView';
 import EmptyView from '@/components/ui/EmptyView';
 import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { useBookingsStore } from '@/store/useBookingsStore';
 import { useProfileStore } from '@/store/useProfileStore';
 import { Image } from 'expo-image';
 import { memo, useEffect } from 'react';
@@ -19,6 +20,7 @@ const ProfileScreen = () => {
 
   // store
   const setProfile = useProfileStore(state => state.setProfile);
+  const bookings = useBookingsStore(state => state.bookings);
 
   // effects
   useEffect(() => {
@@ -51,7 +53,7 @@ const ProfileScreen = () => {
       </View>
       <ThemedText type="defaultSemiBold" style={tw`mt-4`}>{`Account Details`}</ThemedText>
       <View style={tw`bg-gray-100 p-4 rounded-xl mt-2`}>
-        <ThemedText>{`Total bookings: ${user?.bookings?.length ?? 0}`}</ThemedText>
+        <ThemedText>{`Total bookings: ${bookings?.length ?? 0}`}</ThemedText>
       </View>
     </ThemedView>
   );

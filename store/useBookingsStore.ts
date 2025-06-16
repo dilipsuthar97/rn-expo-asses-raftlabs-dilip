@@ -8,5 +8,5 @@ interface BookingsState {
 
 export const useBookingsStore = create<BookingsState>(set => ({
   bookings: [],
-  setBookings: bookings => set(state => ({ bookings: [...state.bookings, ...bookings] })),
+  setBookings: bookings => set(state => ({ bookings })),
 }));

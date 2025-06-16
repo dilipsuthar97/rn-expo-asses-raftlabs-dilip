@@ -23,6 +23,22 @@
       "checkOut": "2025-06-19",
       "status": "pending",
       "userId": "user1"
+    },
+    {
+      "id": "1ab6",
+      "propertyId": "2",
+      "checkIn": "2025-06-16",
+      "checkOut": "2025-06-19",
+      "status": "pending",
+      "userId": "user1"
+    },
+    {
+      "id": "cd23",
+      "propertyId": "1",
+      "checkIn": "2025-06-16",
+      "checkOut": "2025-06-19",
+      "status": "pending",
+      "userId": "user1"
     }
   ],
   "profile": {
