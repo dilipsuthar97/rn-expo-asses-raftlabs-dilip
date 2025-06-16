@@ -27,7 +27,9 @@ export const PropertyListing: FC<PropertyListingProps> = ({ property }) => {
       <Image style={tw`h-50 w-full`} source={property.images[0]} />
       <View style={tw`p-4`}>
         <ThemedText type="title">{property.title}</ThemedText>
-        <ThemedText type="defaultSemiBold">{address}</ThemedText>
+        <ThemedText type="defaultSemiBold" style={tw`text-gray-500`}>
+          {address}
+        </ThemedText>
         <Separator height={15} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View>

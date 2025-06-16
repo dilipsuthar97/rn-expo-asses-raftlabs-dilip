@@ -1,14 +1,12 @@
 import { useBookings } from '@/api/hooks/useBookings';
-import { ThemedText } from '@/components/ThemedText';
+import { BookingListing } from '@/components/BookingListing';
 import { ThemedView } from '@/components/ThemedView';
 import EmptyView from '@/components/ui/EmptyView';
 import Separator from '@/components/ui/Separator';
 import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useBookingsStore } from '@/store/useBookingsStore';
-import { usePropertiesStore } from '@/store/usePropertiesStore';
 import { Booking } from '@/types/Booking';
-import { getReadableDate } from '@/utils/dateUtil';
 import { memo, useEffect } from 'react';
 import { ActivityIndicator, FlatList, ListRenderItemInfo } from 'react-native';
 import tw from 'twrnc';
@@ -21,7 +19,6 @@ const BookingsScreen = () => {
   const { data, isLoading, isSuccess, isPending, refetch } = useBookings();
 
   // store
-  const properties = usePropertiesStore(state => state.properties);
   const setBookings = useBookingsStore(state => state.setBookings);
 
   // effects
@@ -46,16 +43,7 @@ const BookingsScreen = () => {
    * @returns
    */
   const _renderItem = ({ item }: ListRenderItemInfo<Booking>) => {
-    const property = properties.find(p => p.id === item.propertyId);
-
-    return (
-      <ThemedView style={tw`border border-gray-300 mx-4 p-4 rounded-xl overflow-hidden`}>
-        <ThemedText type="default">{`Booking ID: ${item.id}`}</ThemedText>
-        <ThemedText type="default">{`Property Name: ${property?.title}`}</ThemedText>
-        <ThemedText type="default">{`Check in time: ${getReadableDate(item.checkIn)}`}</ThemedText>
-        <ThemedText type="default">{`Check out time: ${getReadableDate(item.checkOut)}`}</ThemedText>
-      </ThemedView>
-    );
+    return <BookingListing booking={item} />;
   };
 
   /**
