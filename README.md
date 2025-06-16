@@ -13,7 +13,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 2. Start the app
 
    ```bash
-   npx expo start
+   open new terminal in project location
+   run 'npx json-server db.json'
+   in another terminal run this command 'npx expo start'
+   press a for 'android'
+   press i for 'iOS'
    ```
 
 In the output, you'll find options to open the app in a
