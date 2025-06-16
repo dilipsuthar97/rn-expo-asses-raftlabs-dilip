@@ -1,0 +1,67 @@
+{
+  "bookings": [
+    {
+      "checkIn": "2024-02-01",
+      "checkOut": "2024-02-05",
+      "id": "1",
+      "propertyId": "1",
+      "status": "confirmed",
+      "userId": "user1"
+    },
+    {
+      "checkIn": "2024-02-01",
+      "checkOut": "2024-02-05",
+      "id": "20e1",
+      "propertyId": "2",
+      "status": "pending",
+      "userId": "user1"
+    }
+  ],
+  "profile": {
+    "bookings": ["1"],
+    "email": "john@example.com",
+    "id": "user1",
+    "name": "John Doe"
+  },
+  "properties": [
+    {
+      "features": ["2 Bedrooms", "2 Bathrooms", "Parking", "Pool"],
+      "id": "1",
+      "images": [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+        "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8"
+      ],
+      "location": {
+        "address": "123 Main St",
+        "city": "San Francisco",
+        "coordinates": {
+          "latitude": 37.7749,
+          "longitude": -122.4194
+        },
+        "state": "CA"
+      },
+      "price": 2500,
+      "title": "Modern Downtown Apartment"
+    },
+    {
+      "features": ["4 Bedrooms", "3 Bathrooms", "Beachfront", "Private Pool"],
+      "id": "2",
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811"
+      ],
+      "location": {
+        "address": "456 Ocean Ave",
+        "city": "Malibu",
+        "coordinates": {
+          "latitude": 34.0259,
+          "longitude": -118.7798
+        },
+        "state": "CA"
+      },
+      "price": 5000,
+      "title": "Luxury Beach House"
+    }
+  ]
+}
