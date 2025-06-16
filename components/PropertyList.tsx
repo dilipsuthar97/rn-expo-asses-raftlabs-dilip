@@ -1,4 +1,5 @@
 import { useProperties } from '@/api/hooks/useProperties';
+import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
 import { useFilteredData } from '@/hooks/useFilteredData';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { usePropertiesStore } from '@/store/usePropertiesStore';
@@ -10,7 +11,6 @@ import { PropertyListing } from './PropertyListing';
 import { ThemedView } from './ThemedView';
 import EmptyView from './ui/EmptyView';
 import Separator from './ui/Separator';
-import { useBottomTabOverflow } from './ui/TabBarBackground';
 
 interface PropertyListProps {
   searchQuery: string;
@@ -21,7 +21,7 @@ export const PropertyList: FC<PropertyListProps> = ({ searchQuery }) => {
   const tintColor = useThemeColor({}, 'tint');
 
   // api states
-  const { data, isLoading, isSuccess, isPending } = useProperties();
+  const { data, isLoading, isSuccess, isPending, refetch } = useProperties();
 
   // store
   const setProperties = usePropertiesStore(state => state.setProperties);
@@ -83,7 +83,7 @@ export const PropertyList: FC<PropertyListProps> = ({ searchQuery }) => {
         paddingBottom: bottomTabHeight + 15,
         flexGrow: 1,
       }}
-      ListEmptyComponent={<EmptyView />}
+      ListEmptyComponent={<EmptyView onPressRetry={refetch} />}
     />
   );
 };

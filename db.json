@@ -15,17 +15,32 @@
       "propertyId": "2",
       "status": "pending",
       "userId": "user1"
+    },
+    {
+      "id": "385e",
+      "propertyId": "1",
+      "checkIn": "2025-06-16",
+      "checkOut": "2025-06-19",
+      "status": "pending",
+      "userId": "user1"
     }
   ],
   "profile": {
-    "bookings": ["1"],
+    "bookings": [
+      "1"
+    ],
     "email": "john@example.com",
     "id": "user1",
     "name": "John Doe"
   },
   "properties": [
     {
-      "features": ["2 Bedrooms", "2 Bathrooms", "Parking", "Pool"],
+      "features": [
+        "2 Bedrooms",
+        "2 Bathrooms",
+        "Parking",
+        "Pool"
+      ],
       "id": "1",
       "images": [
         "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
@@ -45,7 +60,12 @@
       "title": "Modern Downtown Apartment"
     },
     {
-      "features": ["4 Bedrooms", "3 Bathrooms", "Beachfront", "Private Pool"],
+      "features": [
+        "4 Bedrooms",
+        "3 Bathrooms",
+        "Beachfront",
+        "Private Pool"
+      ],
       "id": "2",
       "images": [
         "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",

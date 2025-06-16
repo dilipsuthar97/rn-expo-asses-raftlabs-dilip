@@ -2,9 +2,10 @@ import { useProfiles } from '@/api/hooks/useProfiles';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import EmptyView from '@/components/ui/EmptyView';
-import { useBottomTabOverflow } from '@/components/ui/TabBarBackground';
+import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useProfileStore } from '@/store/useProfileStore';
+import { Image } from 'expo-image';
 import { memo, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import tw from 'twrnc';
@@ -14,18 +15,18 @@ const ProfileScreen = () => {
   const tintColor = useThemeColor({}, 'tint');
 
   // api states
-  const { data, isLoading, isError, error, isSuccess, isPending } = useProfiles();
+  const { data: user, isLoading, isError, error, isSuccess, isPending, refetch } = useProfiles();
 
   // store
   const setProfile = useProfileStore(state => state.setProfile);
 
   // effects
   useEffect(() => {
-    if (isSuccess && data && !isPending) {
-      setProfile(data);
+    if (isSuccess && user && !isPending) {
+      setProfile(user);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, isSuccess, isPending]);
+  }, [user, isSuccess, isPending]);
 
   if (isLoading) {
     return (
@@ -36,22 +37,21 @@ const ProfileScreen = () => {
   }
 
   if (isError && error) {
-    return <EmptyView />;
+    return <EmptyView onPressRetry={refetch} />;
   }
 
   return (
-    <ThemedView style={[tw`flex-1 p-4`, { paddingBottom: bottomTabHeight }]}>
-      <View style={tw`flex-row`}>
-        <ThemedText>{'Email: '}</ThemedText>
-        <ThemedText style={{ fontWeight: 'bold' }}>{data?.email}</ThemedText>
+    <ThemedView style={[tw`flex-1 p-4 `, { paddingBottom: bottomTabHeight }]}>
+      <View style={tw`flex-row items-center gap-4`}>
+        <Image source={{ uri: 'https://randomuser.me/api/portraits/men/34.jpg' }} style={tw`h-20 w-20 rounded-full`} />
+        <View>
+          <ThemedText>{user?.name}</ThemedText>
+          <ThemedText>{user?.email}</ThemedText>
+        </View>
       </View>
-      <View style={tw`flex-row`}>
-        <ThemedText>{'Name: '}</ThemedText>
-        <ThemedText style={{ fontWeight: 'bold' }}>{data?.name}</ThemedText>
-      </View>
-      <View style={tw`flex-row`}>
-        <ThemedText>{'Total bookings: '}</ThemedText>
-        <ThemedText style={{ fontWeight: 'bold' }}>{data?.bookings?.length ?? 0}</ThemedText>
+      <ThemedText type="defaultSemiBold" style={tw`mt-4`}>{`Account Details`}</ThemedText>
+      <View style={tw`bg-gray-100 p-4 rounded-xl mt-2`}>
+        <ThemedText>{`Total bookings: ${user?.bookings?.length ?? 0}`}</ThemedText>
       </View>
     </ThemedView>
   );

@@ -3,7 +3,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import EmptyView from '@/components/ui/EmptyView';
 import Separator from '@/components/ui/Separator';
-import { useBottomTabOverflow } from '@/components/ui/TabBarBackground';
+import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useBookingsStore } from '@/store/useBookingsStore';
 import { usePropertiesStore } from '@/store/usePropertiesStore';
@@ -18,7 +18,7 @@ const BookingsScreen = () => {
   const tintColor = useThemeColor({}, 'tint');
 
   // api states
-  const { data, isLoading, isSuccess, isPending } = useBookings();
+  const { data, isLoading, isSuccess, isPending, refetch } = useBookings();
 
   // store
   const properties = usePropertiesStore(state => state.properties);
@@ -77,7 +77,7 @@ const BookingsScreen = () => {
         data={data}
         keyExtractor={_keyExtractor}
         renderItem={_renderItem}
-        ListEmptyComponent={<EmptyView />}
+        ListEmptyComponent={<EmptyView onPressRetry={refetch} />}
         contentContainerStyle={[
           tw`flex-grow py-4`,
           {
